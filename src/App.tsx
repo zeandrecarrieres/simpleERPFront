@@ -6,11 +6,12 @@ import SupplierAdd from "./components/supplieradd/SupplierAdd";
 import ProductAdd from "./components/productadd/ProductAdd";
 import CategoryAdd from "./components/categoryadd/CategoryAdd";
 import AddressAdd from "./components/addressadd/AddressAdd";
-import Teste from "./components/teste/Teste"
+import ListOfClients from "./components/listofclients/listofclients"
 
 import Dashboard from "./components/dashBoard/dashboard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./app.css";
+
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path="/productadd" element={<ProductAdd />} />
           <Route path="/categoryadd" element={<CategoryAdd />} />
           <Route path="/addressadd" element={<AddressAdd />} />
-           <Route path="/teste" element={<Teste />} />
+           <Route path="/client" element={<ListOfClients />} />
         </Routes>
         {/* <Footer /> */}
       </Router>
