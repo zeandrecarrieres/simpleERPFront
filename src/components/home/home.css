@@ -1,0 +1,10 @@
+main {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.back-img {
+    max-width: 75vw;
+}

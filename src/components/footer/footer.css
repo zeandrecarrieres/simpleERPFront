@@ -1,0 +1,9 @@
+footer {
+    display: flex;
+    /* align-items: flex-end; */
+    font-size: .7rem;
+    padding: 6px;
+    background: #f3f3f3;
+    color: rgb(52, 52, 52);
+
+}

@@ -1,0 +1,16 @@
+.top-bar {
+    display: flex;
+    background: #1A7DD7;
+    color: white;
+    padding: .4rem 0rem;
+    
+}
+
+span {
+    font-weight: 300;
+}
+
+.container {
+    padding: 0 10vw ;
+    max-width: 1080px;
+}
