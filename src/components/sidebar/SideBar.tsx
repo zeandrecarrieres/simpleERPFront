@@ -10,16 +10,16 @@ function SideBar() {
           <li>
             CADASTROS
           </li>
-          <Link to="/useradd">
+          <Link to="/supplier">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Usuários
           </Link>
-          <Link to="/supplieradd">
+          <Link to="/supplier">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Fornecedores
           </Link>
-          <Link to="/clientadd">
+          <Link to="/client">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Clientes
           </Link>
-          <Link to="/productadd">
+          <Link to="/product">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Produtos
           </Link>
           <li>

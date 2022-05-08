@@ -1,0 +1,13 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    margin-bottom: 1em;
+    padding: 1em;
+    color: rgb(76, 76, 76);
+}
+
+.container label {
+    font-weight: bold;
+    color: rgb(56, 56, 56);
+}

@@ -1,20 +1,32 @@
+import { useState } from "react";
 import "./categoryadd.css";
 import SideBar from "../sidebar/SideBar";
-import api from "../../api/api"
+import api from "../../api/api";
 
 function CategoryAdd() {
-  let category = {category:""}
+  let baseCategory = { category: "" };
 
-  function handleChange(e:any) {
-    category = { ...category, [e.target.name]: e.target.value }
-    console.info(category)
+  const [category, setCategory] = useState(baseCategory);
+
+  function handleChange(e: any) {
+    setCategory({ ...category, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e:any) {
-    e.preventDefault()
-    console.info(category)
-    const response = await api.post("/category", category)
-    console.info(response)
+  async function handleSubmit(e: any) {
+    e.preventDefault();
+    
+    if (!category.category) {
+      alert("preencha a categoria!")
+    }
+
+    const response = await api.post("/category", category);
+    alert("Categoria Adicionada com sucesso!");
+    console.info(response);
+    clearForm()
+  }
+
+    function clearForm() {
+    setCategory(baseCategory);
   }
 
   return (
@@ -24,7 +36,7 @@ function CategoryAdd() {
         <h2>CADASTRO DE CATEGORIA</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="category">Categoria</label>
-          <input type="category" name="category" onChange={handleChange} />
+          <input type="category" name="category" onChange={handleChange} value={category.category}/>
           <button>Incluir</button>
         </form>
       </main>

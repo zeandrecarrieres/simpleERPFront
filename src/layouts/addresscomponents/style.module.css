@@ -1,0 +1,13 @@
+.body-component {
+    padding: 2em;
+    margin-top: 1em;
+    box-sizing: border-box;
+    background-color: #555;
+    color: #ddd ;
+    width: 80%;
+    
+}
+
+.body-component li {
+    background-color: white ;
+}
