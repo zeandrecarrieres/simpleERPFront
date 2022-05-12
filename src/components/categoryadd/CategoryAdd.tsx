@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./categoryadd.css";
 import SideBar from "../sidebar/SideBar";
 import api from "../../api/api";
 
 function CategoryAdd() {
+  let navigate = useNavigate()
+
   let baseCategory = { category: "" };
 
   const [category, setCategory] = useState(baseCategory);
@@ -23,9 +26,11 @@ function CategoryAdd() {
     alert("Categoria Adicionada com sucesso!");
     console.info(response);
     clearForm()
+
+    navigate("/category")
   }
 
-    function clearForm() {
+ function clearForm() {
     setCategory(baseCategory);
   }
 

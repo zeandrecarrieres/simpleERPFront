@@ -7,28 +7,31 @@ function SideBar() {
     <div className="menu-container">
       <nav>
         <ul>
-          <li>
+          <li className="menu-title">
             CADASTROS
           </li>
-          <Link to="/supplier">
+          <Link className="menu-link" to="/supplier">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Usuários
           </Link>
-          <Link to="/supplier">
+          <Link className="menu-link" to="/supplier">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Fornecedores
           </Link>
-          <Link to="/client">
+          <Link className="menu-link" to="/client">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Clientes
           </Link>
-          <Link to="/product">
+          <Link className="menu-link" to="/category">
+            <img src={ClientIcon} className="bar-icon" alt="icon" /> Categorias
+          </Link>
+          <Link className="menu-link" to="/product">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Produtos
           </Link>
-          <li>
-            ESTOQUE
+          <li className="menu-title">
+            TRANSAÇÕES
           </li>
-          <Link to="/useradd">
+          <Link className="menu-link" to="/incomeadd">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Entradas
           </Link>
-          <Link to="/useradd">
+          <Link className="menu-link" to="/saleadd">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Saídas
           </Link>
         </ul>

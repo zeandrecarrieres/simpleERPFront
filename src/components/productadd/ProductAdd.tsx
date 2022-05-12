@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./productadd.css";
 import SideBar from "../sidebar/SideBar";
 import api from "../../api/api";
 
 function ProductAdd() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
+
+  let category = {
+    _id: "",
+    category: "",
+  };
 
   let baseProduct = {
     code: "",
@@ -18,6 +23,15 @@ function ProductAdd() {
   };
 
   const [product, setProduct] = useState(baseProduct);
+  const [categories, setCategories] = useState([category]);
+
+  useEffect(() => {
+    api
+      .get("/category")
+      .then((response) => response.data)
+      .then((item) => setCategories(item))
+      .catch((err) => console.error(err));
+  }, []);
 
   function handleChange(e: any) {
     setProduct({
@@ -25,11 +39,6 @@ function ProductAdd() {
       [e.target.name]: e.target.value,
     });
   }
-
-  // function handleChange(e: any) {
-  //   product = { ...products, [e.target.name]: e.target.value };
-  //   console.log(product);
-  // }
 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -48,10 +57,9 @@ function ProductAdd() {
     console.log(product);
     api.post("/product", product);
 
-    alert("Produto Adicionado com sucesso!");
     clearForm();
 
-    navigate("/product")
+    navigate("/product");
   }
 
   function clearForm() {
@@ -72,14 +80,23 @@ function ProductAdd() {
               onChange={handleChange}
               value={product.code}
             />
-            {/* lembrar de criar tabela de categorias e atualizar isso */}
-            <label htmlFor="categoryId">CategoriaID</label>
-            <input
-              type="text"
+            <label htmlFor="categoryId">Categoria</label>
+            <select
               name="categoryId"
+              id="categoryId"
               onChange={handleChange}
-              value={product.categoryId}
-            />
+              required
+            >
+              <option selected disabled>
+                Selecione o tipo:
+              </option>
+              {categories.map((option: any) => (
+                <>
+                  <option value={option._id}>{option.category}</option>
+                </>
+              ))}
+            </select>
+
             <label htmlFor="name">Nome:</label>
             <input
               type="text"

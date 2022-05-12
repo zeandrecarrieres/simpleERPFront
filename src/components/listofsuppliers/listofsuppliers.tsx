@@ -43,7 +43,7 @@ function ListOfSuppliers() {
           {suppliers.map((item, index) => (
             <>
               <li key={index} className="list">
-                <Link to={`/supplier/profile/${item._id}`}> {item.name} </Link>
+                <Link className="menu-link" to={`/supplier/profile/${item._id}`}> {item.name} </Link>
                
                 <div>
                 <Link className="add-button" to={`/addressadd/${item._id}/SUPPLIER`}>incluir endereço</Link>

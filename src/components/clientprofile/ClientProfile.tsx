@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
-import AddressList from "../../layouts/addresscomponents/AddressList";
 import api from "../../api/api";
 import style from "./styles.module.css"
 
@@ -41,7 +40,7 @@ function ClientProfile() {
       .then((response) => response.data)
       .then((item) => setProfile(item))
       .catch((err) => console.error(err));
-  }, []);
+  }, [_id]);
 
   useEffect(() => {
     api
@@ -49,7 +48,7 @@ function ClientProfile() {
       .then((response) => response.data)
       .then((item) => setAddresses(item))
       .catch((err) => console.error(err));
-  }, [profile]);
+  }, [_id, profile]);
 
   return (
     <div className="container">

@@ -33,7 +33,7 @@ function AddressAdd() {
     setAdress({
       ...address,
       [e.target.name]: e.target.value,
-      [references.referenceId]: _id,
+      [references.referenceId]: _id, 
       [references.referenceType]: type,
     });
     console.log(address);

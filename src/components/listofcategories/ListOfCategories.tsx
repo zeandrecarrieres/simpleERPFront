@@ -1,50 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
-import "./listofproducts.css";
+import "./listofcategories.css";
 import api from "../../api/api";
 
-function ListOfProducts() {
+function ListOfCategories() {
   const data = {
-     _id: "",
-    code: "",
-    categoryId: "",
-    name: "",
-    description: "",
-    unit: "",
-    price: "",
-    cost: ""
+    _id: "",
+    category: "",
+    
    }
 
-  const [products, setProducts] = useState([data]);
+  const [categories, setCategories] = useState([data]);
 
 
 
  
   useEffect(() => {
-    api.get("/product")
+    api.get("/category")
       .then((response) => response.data)
-    .then((item) => setProducts(item))
+    .then((item) => setCategories(item))
     .catch((err) => console.error(err));
   }, []);
 
   const suspendProduct = async (id:any) => {
-    alert("Produto suspenso com sucesso!");
+    alert("Categoria suspensa com sucesso!");
   }
 
   return (
     <div className="container">
       <SideBar />
       <main>
-        <h1>Lista de Produtos</h1>
+        <h1>Lista de Categorias</h1>
          <div>
-          <Link className="add-button" to={"/productadd" }>Novo Produto</Link>
+          <Link className="add-button" to={"/categoryadd" }>Nova Categoria</Link>
         </div>
         <ul >
-          {products.map((item, index) => (
+          {categories.map((item, index) => (
             <>
               <li key={index} className="list">
-                <Link className="menu-link" to={`/product/profile/${item._id}`}> {item.name} </Link>
+                <span className="menu-link">{item.category} </span>
+                 
                
                 <div>
                 
@@ -61,4 +57,4 @@ function ListOfProducts() {
   );
 }
 
-export default ListOfProducts;
+export default ListOfCategories;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
-import AddressList from "../../layouts/addresscomponents/AddressList";
 import api from "../../api/api";
 import style from "./styles.module.css"
 
@@ -41,7 +40,7 @@ function SupplierProfile() {
       .then((response) => response.data)
       .then((item) => setProfile(item))
       .catch((err) => console.error(err));
-  }, []);
+  }, [_id]);
 
   useEffect(() => {
     api
@@ -49,7 +48,7 @@ function SupplierProfile() {
       .then((response) => response.data)
       .then((item) => setAddresses(item))
       .catch((err) => console.error(err));
-  }, [profile]);
+  }, [_id]);
 
   return (
     <div className="container">
@@ -58,13 +57,16 @@ function SupplierProfile() {
         <h2>PERFIL DO FORNECEDOR</h2>
         <p>Nome:</p>
         <p>{profile.name}</p>
+        
+        
+
 
         <h2>ENDEREÇOS</h2>
-
+       
         {addresses.map((item) => (
           <>
             <div className={style["container"]}>
-              <li><label>Rua: </label> {item.street}</li>
+              <li className="menu-link"><label>Rua: </label> {item.street}</li>
               <li><label>Número: </label>{item.number}</li>
               <li><label>Complemento: </label>{item.complement}</li>
               <li><label>Bairro: </label>{item.district}</li>

@@ -1,6 +1,6 @@
 .menu-container {
     background: rgb(234, 233, 233);
-    color: rgb(95, 95, 95);
+    color: rgb(61, 61, 61);
     font-size: 1rem;
     display: flex;
     flex-direction: column;
@@ -21,6 +21,16 @@ nav ul {
     gap: 1rem;
     margin-left: -1.5em;
     margin-top: 5rem;
+}
+
+.menu-title {
+color: #1A7DD7;
+font-weight: bold;
+}
+
+.menu-link {
+    color: rgb(21, 21, 21);
+    font-size: .9rem;
 }
 
 
