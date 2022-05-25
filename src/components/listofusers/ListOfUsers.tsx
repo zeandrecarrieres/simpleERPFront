@@ -1,64 +1,61 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
-import "./listofproducts.css";
+import "./listofusers.css";
 import api from "../../api/api";
 
-function ListOfProducts() {
+function ListOfUsers() {
   const data = {
-    _id: "",
-    code: "",
-    categoryId: "",
-    name: "",
-    description: "",
-    unit: "",
-    price: "",
-    cost: "",
+    "_id": "",
+		"name": "",
+		"email": "",
+		"password": "",
+		"access": ""
   };
 
-  const [products, setProducts] = useState([data]);
+  const [users, setUsers] = useState([data]);
 
   useEffect(() => {
     api
-      .get("/product")
+      .get("/admin/user")
       .then((response) => response.data)
-      .then((item) => setProducts(item))
+      .then((item) => setUsers(item))
       .catch((err) => console.error(err));
   }, []);
 
-  const suspendProduct = async (id: any) => {
-    alert("Produto suspenso com sucesso!");
+  const suspendUser = async (id: any) => {
+    alert("Usuário suspenso com sucesso!");
   };
 
   return (
     <div className="container">
       <SideBar />
       <main>
-        <h1>Lista de Produtos</h1>
+        <h1>Lista de Usuários</h1>
         <div>
-          <Link className="add-button" to={"/productadd"}>
-            Novo Produto
+          <Link className="add-button" to={"/useradd"}>
+            Novo Usuário
           </Link>
         </div>
         <ul>
-          {products.map((item, index) => (
+          {users.map((item, index) => (
             <>
               <li key={index} className="list">
-                <Link className="menu-link" to={`/product/profile/${item._id}`}>
+                <Link className="menu-link" to={`/user/profile/${item._id}`}>
                   {" "}
                   {item.name}{" "}
                 </Link>
 
                 <div>
-                  <Link
+                                   <Link
                     className="edit-button "
-                    to={`/addressadd/${item._id}/CLIENT`}
+                    to={`/Useradd`}
                   >
                     editar
                   </Link>
                   <button
                     className="remove-button"
-                    onClick={(e) => suspendProduct(item._id)}
+                    onClick={(e) => suspendUser(item._id)}
                   >
                     suspender
                   </button>
@@ -72,4 +69,4 @@ function ListOfProducts() {
   );
 }
 
-export default ListOfProducts;
+export default ListOfUsers;

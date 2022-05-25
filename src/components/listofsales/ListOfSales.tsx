@@ -12,7 +12,7 @@ function ListOfSales() {
     IssueDate: "",
     clientId: "",
     salesmanId: "",
-    comission:"",
+    comission: "",
     freight: "",
     depenses: "",
     paymentConditions: "",
@@ -48,19 +48,26 @@ function ListOfSales() {
           {sales.map((item, index) => (
             <>
               <li key={index} className="list">
-                <Link 
-                  className="menu-link"
-                  to={`/sale/detail/${item._id}`}
-                >
+                <Link className="menu-link" to={`/sale/detail/${item._id}`}>
                   {item.type} - {item.NfNumber}
                 </Link>
 
                 <div>
-                  <Link className="add-button" to={`/transactionproducts/${item._id}`}>
+                  <Link
+                    className="add-button"
+                    to={`/transactionproducts/${item._id}`}
+                  >
                     incluir produtos
                   </Link>
-                  <Link className="edit-button " to={`/addressadd/${item._id}`}>editar</Link>
-                  <button className="remove-button" onClick={(e)=>suspendSale(item._id)}>cancelar</button>
+                  <Link className="edit-button " to={`/addressadd/${item._id}`}>
+                    editar
+                  </Link>
+                  <button
+                    className="remove-button"
+                    onClick={(e) => suspendSale(item._id)}
+                  >
+                    cancelar
+                  </button>
                 </div>
               </li>
             </>

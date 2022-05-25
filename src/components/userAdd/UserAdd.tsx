@@ -1,9 +1,12 @@
-import "./useradd.css";
+import { useNavigate } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
 import tools from "../../helpers/tools";
 import api from "../../api/api";
+import "./useradd.css";
 
 function UserAdd() {
+  let navigate = useNavigate();
+
   let user = { name: null, email: null, password: "", access: "" };
 
   function handleChange(e: any): void {
@@ -33,6 +36,8 @@ function UserAdd() {
     } catch (error) {
       console.info(error);
     }
+
+    navigate("/user");
   }
 
   return (

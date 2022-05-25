@@ -5,7 +5,7 @@ import SideBar from "../sidebar/SideBar";
 import api from "../../api/api";
 
 function ClientAdd() {
-   let navigate = useNavigate()
+  let navigate = useNavigate();
 
   let baseClient = {
     clientSupplier: "CLIENT", //Identificação se é cliente ou fornecedor
@@ -38,13 +38,13 @@ function ClientAdd() {
     }
 
     api.post("/client", client);
-  alert("Cliente Adicionado com sucesso!");
+    alert("Cliente Adicionado com sucesso!");
     clearForm();
 
-    navigate("/client")
+    navigate("/client");
   }
-  
-   function clearForm() {
+
+  function clearForm() {
     setClient(baseClient);
   }
   return (
@@ -56,7 +56,13 @@ function ClientAdd() {
           <input type="hidden" name="clientSupplier" value="CLIENT" />
           <div className="form-container">
             <label htmlFor="type">Tipo</label>
-            <select name="type" id="type" onChange={handleChange} value={client.type} required>
+            <select
+              name="type"
+              id="type"
+              onChange={handleChange}
+              value={client.type}
+              required
+            >
               <option selected disabled value={"select"}>
                 Selecione o tipo:
               </option>
@@ -65,14 +71,20 @@ function ClientAdd() {
             </select>
 
             <label htmlFor="name">Nome</label>
-            <input type="name" name="name" onChange={handleChange} value={client.name} required />
+            <input
+              type="name"
+              name="name"
+              onChange={handleChange}
+              value={client.name}
+              required
+            />
             <label htmlFor="fantasyName">Nome Fantasia</label>
             <input
               type="text"
               name="fantasyName"
               onChange={handleChange}
               required
-             value={client.fantasyName}
+              value={client.fantasyName}
             />
 
             <div>

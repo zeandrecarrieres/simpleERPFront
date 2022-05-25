@@ -1,11 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { MeuContexto } from "./components/Context/MeuContexto"
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import api from "./api/api"
 
-import Header from "./components/header/Header";
-import Home from "./components/home/Home";
-// import Footer from "./components/footer/Footer";
 import Dashboard from "./components/dashBoard/dashboard";
 import UserAdd from "./components/userAdd/UserAdd";
 import ListOfUsers from "./components/listofusers/ListOfUsers";
@@ -29,44 +25,13 @@ import SaleAdd from "./components/saleadd/SaleAdd";
 import ListOfSales from "./components/listofsales/ListOfSales";
 import TransactionProducts from "./components/transactionproducts/TransactionProducts";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./app.css";
-import { MeusDados } from "./components/Context/MeuContexto";
 
-function App() {
-  const { logado, setLogado  } = useContext(MeuContexto)
-  const [loading, setLoading] = useState<boolean>(true);
-  
-  useEffect(() => {
-    (async () => {
-      const token = await localStorage.getItem("token")
-      setLoading(false)
-      console.log(token)
-      
-      if (!token) {
-        setLogado(false)
-        }
 
-      api.defaults.headers.common['Authorization'] = `Bearer ${token} `
-       
-      setLogado(true)
-      
-    })()
-  }, [])
-
-  if (loading) {
-    return (
-      <h1>Carregando !!!</h1>
-    )
-  }
-
+function Routers() {
   return (
-    <div className="app">
-      <MeusDados>
-        <Router>
-          <Header />
-          <Routes>
-            {/* Home Routes */}
+      <div>
+          
+{/* Home Routes */}
             <Route path="/" element={<Home />} />
             {/* User Routes */}
             <Route path="/useradd" element={<UserAdd />} />
@@ -109,12 +74,9 @@ function App() {
               path="/transactionproducts/:id"
               element={<TransactionProducts />}
             />
-          </Routes>
-          {/* <Footer /> */}
-        </Router>
-      </MeusDados>
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default Routers

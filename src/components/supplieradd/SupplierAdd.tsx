@@ -5,7 +5,7 @@ import SideBar from "../sidebar/SideBar";
 import api from "../../api/api";
 
 function SupplierAdd() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   let baseSupplier = {
     clientSupplier: "SUPPLIER",
@@ -42,14 +42,12 @@ function SupplierAdd() {
     alert("Fornecedor adicionado com sucesso!");
     clearForm();
 
-    navigate("/supplier")
+    navigate("/supplier");
   }
 
   function clearForm() {
     setSupplier(baseSupplier);
   }
-
-
 
   return (
     <div className="container">
@@ -60,14 +58,19 @@ function SupplierAdd() {
           <input type="hidden" name="clientSupplier" value="SUPPLIER" />
           <div className="form-container">
             <label htmlFor="type">Tipo</label>
-            <select name="type" id="type" onChange={handleChange} required value={supplier.type}>
-              <option selected disabled >
+            <select
+              name="type"
+              id="type"
+              onChange={handleChange}
+              required
+              value={supplier.type}
+            >
+              <option selected disabled>
                 Selecione o tipo:
               </option>
               <option value="consumer">Pessoa Física</option>
               <option value="enterprise">Pessoa Jurídica</option>
             </select>
-
             <label htmlFor="name">Nome</label>
             <input
               type="name"
@@ -84,7 +87,6 @@ function SupplierAdd() {
               value={supplier.fantasyName}
               required
             />
-
             <div>
               <label htmlFor="CpfCnpj">CPF / CNPJ</label>
               <input

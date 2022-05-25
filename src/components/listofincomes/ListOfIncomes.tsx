@@ -46,19 +46,25 @@ function ListOfIncomes() {
           {incomes.map((item, index) => (
             <>
               <li key={index} className="list">
-                <Link 
-                  className="menu-link"
-                  to={`/income/detail/${item._id}`}
-                >
+                <Link className="menu-link" to={`/income/detail/${item._id}`}>
                   {item.type} - {item.NfNumber}
                 </Link>
-
                 <div>
-                  <Link className="add-button" to={`/transactionproducts/${item._id}`}>
+                  <Link
+                    className="add-button"
+                    to={`/transactionproducts/${item._id}`}
+                  >
                     incluir produtos
                   </Link>
-                  <Link className="edit-button " to={`/addressadd/${item._id}`}>editar</Link>
-                  <button className="remove-button" onClick={(e)=>suspendClient(item._id)}>cancelar</button>
+                  <Link className="edit-button " to={`/addressadd/${item._id}`}>
+                    editar
+                  </Link>
+                  <button
+                    className="remove-button"
+                    onClick={(e) => suspendClient(item._id)}
+                  >
+                    cancelar
+                  </button>
                 </div>
               </li>
             </>

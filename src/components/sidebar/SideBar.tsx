@@ -10,7 +10,7 @@ function SideBar() {
           <li className="menu-title">
             CADASTROS
           </li>
-          <Link className="menu-link" to="/supplier">
+          <Link className="menu-link" to="/user">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Usuários
           </Link>
           <Link className="menu-link" to="/supplier">

@@ -16,17 +16,8 @@ function SaleAdd() {
     depenses: "",
     paymentConditions: "",
     dueDate: "",
-    paymentMethod: ""
-  }
-  // let baseProduct = {
-  //   code: "",
-  //   categoryId: "",
-  //   name: "",
-  //   description: "",
-  //   unit: "",
-  //   price: 0,
-  //   cost: 0,
-  // };
+    paymentMethod: "",
+  };
 
   const [income, setIncome] = useState(baseIncome);
   const [supplier, setSupplier] = useState([]);
@@ -48,24 +39,10 @@ function SaleAdd() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    // if (
-    //   !product.code ||
-    //   !product.categoryId ||
-    //   !product.name ||
-    //   !product.description ||
-    //   !product.unit ||
-    //   !product.price ||
-    //   !product.cost
-    // ) {
-    //   alert("Preencha todos os campos!");
-    // }
 
-    console.log(income);
     api.post("/income", income);
 
-    alert('incluido')
-
-    // clearForm();
+    alert("incluido");
 
     navigate("/income");
   }
@@ -82,37 +59,19 @@ function SaleAdd() {
         <form onSubmit={handleSubmit}>
           <div className="form-container">
             <label htmlFor="type">Type</label>
-            <select
-              name="type"
-              id="type"
-              onChange={handleChange}
-              required
-            >
+            <select name="type" id="type" onChange={handleChange} required>
               <option selected disabled>
                 Selecione...
               </option>
-            
-              <option value="Entrada">Entrada</option>
-               <option value="Compra">Compra</option>
-              
 
-               </select>
-              <label htmlFor="NfNumber">Número NF</label>
-              <input
-                type="text"
-                name="NfNumber"
-                onChange={handleChange}
-                // value={product.code}
-              />
-           
+              <option value="Entrada">Entrada</option>
+              <option value="Compra">Compra</option>
+            </select>
+            <label htmlFor="NfNumber">Número NF</label>
+            <input type="text" name="NfNumber" onChange={handleChange} />
 
             <label htmlFor="IssueDate">Data de Emissão:</label>
-            <input
-              type="text"
-              name="IssueDate"
-              onChange={handleChange}
-              // value={product.name}
-            />
+            <input type="text" name="IssueDate" onChange={handleChange} />
 
             <label htmlFor="supplierId">Fornecedor</label>
             <select
@@ -132,20 +91,10 @@ function SaleAdd() {
             </select>
 
             <label htmlFor="freight">Frete:</label>
-            <input
-              type="number"
-              name="freight"
-              onChange={handleChange}
-              // value={product.description}
-            />
+            <input type="number" name="freight" onChange={handleChange} />
             <label htmlFor="depenses">Outras despesas:</label>
-            <input
-              type="number"
-              name="depenses"
-              onChange={handleChange}
-              // value={product.unit}
-            />
-             <label htmlFor="paymentConditions">Condição de pagamento:</label>
+            <input type="number" name="depenses" onChange={handleChange} />
+            <label htmlFor="paymentConditions">Condição de pagamento:</label>
             <select
               name="paymentConditions"
               id="paymentConditions"
@@ -159,17 +108,11 @@ function SaleAdd() {
               <option value="cash">à vista</option>
               <option value="term">à prazo</option>
               <option value="finan">em parcelas</option>
-             
 
               <option value="card">Cartão de Crédito</option>
             </select>
             <label htmlFor="dueDate">Data de Vencimento:</label>
-            <input
-              type="text"
-              name="dueDate"
-              onChange={handleChange}
-              // value={product.cost}
-            />
+            <input type="text" name="dueDate" onChange={handleChange} />
 
             <label htmlFor="paymentMethod">Type</label>
             <select

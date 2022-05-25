@@ -67,8 +67,6 @@ function IncomeAdd() {
 
     alert("incluido");
 
-    // clearForm();
-
     navigate("/sale");
   }
 
@@ -88,7 +86,6 @@ function IncomeAdd() {
               <option selected disabled>
                 Selecione...
               </option>
-
               <option value="sell">Venda</option>
               <option value="outgoing">Saída</option>
               <option value="consignate">Consignado</option>
@@ -100,7 +97,6 @@ function IncomeAdd() {
               onChange={handleChange}
               // value={product.code}
             />
-
             <label htmlFor="IssueDate">Data de Emissão:</label>
             <input
               type="text"
@@ -108,24 +104,10 @@ function IncomeAdd() {
               onChange={handleChange}
               // value={product.name}
             />
-
-             <label htmlFor="salesmanId">Vendedor:</label>
-            <input
-              type="text"
-              name="salesmanId"
-              onChange={handleChange}
-              // value={product.name}
-            />
-
-             <label htmlFor="comission">Comissão:</label>
-            <input
-              type="number"
-              name="comission"
-              onChange={handleChange}
-              // value={product.name}
-            />
-
-
+            <label htmlFor="salesmanId">Vendedor:</label>
+            <input type="text" name="salesmanId" onChange={handleChange} />
+            <label htmlFor="comission">Comissão:</label>
+            <input type="number" name="comission" onChange={handleChange} />
             <label htmlFor="clientId">Cliente</label>
             <select
               name="clientId"
@@ -144,19 +126,9 @@ function IncomeAdd() {
             </select>
 
             <label htmlFor="freight">Frete:</label>
-            <input
-              type="number"
-              name="freight"
-              onChange={handleChange}
-              // value={product.description}
-            />
+            <input type="number" name="freight" onChange={handleChange} />
             <label htmlFor="depenses">Outras despesas:</label>
-            <input
-              type="number"
-              name="depenses"
-              onChange={handleChange}
-              // value={product.unit}
-            />
+            <input type="number" name="depenses" onChange={handleChange} />
             <label htmlFor="paymentConditions">Condição de pagamento:</label>
             <select
               name="paymentConditions"
@@ -167,20 +139,13 @@ function IncomeAdd() {
               <option selected disabled>
                 Selecione...
               </option>
-
               <option value="cash">à vista</option>
               <option value="term">à prazo</option>
               <option value="finan">em parcelas</option>
-
               <option value="card">Cartão de Crédito</option>
             </select>
             <label htmlFor="dueDate">Data de Vencimento:</label>
-            <input
-              type="text"
-              name="dueDate"
-              onChange={handleChange}
-              // value={product.cost}
-            />
+            <input type="text" name="dueDate" onChange={handleChange} />
 
             <label htmlFor="paymentMethod">Type</label>
             <select
@@ -192,15 +157,12 @@ function IncomeAdd() {
               <option selected disabled>
                 Selecione...
               </option>
-
               <option value="money">Dinheiro</option>
               <option value="check">Cheque</option>
               <option value="slip">Boleto</option>
-
               <option value="card">Cartão de Crédito</option>
             </select>
           </div>
-
           <button>Incluir</button>
         </form>
       </main>

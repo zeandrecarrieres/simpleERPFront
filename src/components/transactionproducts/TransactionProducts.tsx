@@ -1,5 +1,5 @@
 import "./transactionproducts.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createRef, useRef } from "react";
 import SideBar from "../sidebar/SideBar";
 import { useParams } from "react-router-dom";
 import api from "../../api/api";
@@ -7,14 +7,14 @@ import api from "../../api/api";
 function TransactionProducts() {
   const { id } = useParams();
 
-  //  console.log( id )
-
   const baseProduct = {
     transactionId: id,
     productId: "",
+    productname: "",
     productQuantity: 0,
     discount: 0,
     value: 0,
+    subTotal: 0,
   };
 
   const baseTransaction = {
@@ -22,25 +22,15 @@ function TransactionProducts() {
     name: "",
   };
 
-  async function returnName(id:string){
-    listOfProduct.map((item) => {
-      if (id == item.productId) {
-        console.log(item.name)
-        return "maca"         
-      
-      }
-        
-    })
-    
-  }
-
   const baseCarrinho: any = {};
-
-  const nameProducts = [];
-
   const [product, setProduct] = useState(baseProduct);
   const [carrinho, setCarrinho] = useState([baseCarrinho]);
   const [listOfProduct, setListOfProducts] = useState([baseTransaction]);
+  const [name, setName] = useState("");
+  const [total, setTotal] = useState(0);
+
+  const inputSubTotal = useRef<HTMLInputElement>(null);
+
 
   useEffect(() => {
     api
@@ -50,32 +40,70 @@ function TransactionProducts() {
       .catch((err) => console.error(err));
   }, []);
 
-  function handleChange(e: any) {
+  function change(e: any) {
+    alert(e.target);
+    return;
+  }
+
+  async function handleChange(e: any) {
+    if (e.target.name === "productId") {
+      const pname = await e.target.options[e.target.selectedIndex].text;
+      setName(pname);
+      setProduct({
+        ...product,
+        [e.target.name]: e.target.value,
+      });
+      return;
+    }
     setProduct({
       ...product,
       [e.target.name]: e.target.value,
     });
   }
-  // console.log(product);
-
-  async function handleSubmit(e: any) {
-    e.preventDefault();
-  }
 
   function addCartItem(e: any) {
     e.preventDefault();
+    let newSubTotal = inputSubTotal.current?.valueAsNumber;
+    if (!newSubTotal) newSubTotal = 0;
+
     let newItem = [...carrinho];
+
     newItem.push(product);
+
+    product.productname = name;
+    product.subTotal = newSubTotal;
 
     if (!product.productId) {
       alert("selecione o produto!");
+      return;
     }
     setCarrinho(newItem);
+    return;
   }
 
   useEffect(() => {
-    console.log(carrinho);
+    const soma = carrinho.reduce((acc: number, item) => {
+      const novoValor = parseFloat(item.subTotal);
+
+      if (!novoValor) {
+        return 0;
+      }
+      return (acc += novoValor);
+    }, 0);
+    setTotal(soma);
   }, [carrinho]);
+
+  async function handleSubmit(e: any) {
+    e.preventDefault();
+    delete carrinho[0]
+    console.log(carrinho);
+    await addCarrinhoBd(carrinho)
+  }
+
+  async function addCarrinhoBd(dados:any) {
+    const response = await api.post("/incomeproducts", dados)
+    console.log(response)
+  }
 
   return (
     <div className="container">
@@ -101,7 +129,6 @@ function TransactionProducts() {
                 </>
               ))}
 
-              {/* validar no envio do botao */}
             </select>
 
             <div className="forms-group">
@@ -110,27 +137,26 @@ function TransactionProducts() {
                 type="number"
                 name="productQuantity"
                 onChange={handleChange}
-                // value={address.district}
+                defaultValue="0"
               />
               <label htmlFor="value">Valor:</label>
               <input
                 type="number"
                 name="value"
                 onChange={handleChange}
-                // value={address.zipCode}
+                defaultValue="0"
               />
               <label htmlFor="discount">Desconto:</label>
               <input
                 type="number"
                 name="discount"
                 onChange={handleChange}
-                // value={address.zipCode}
+                defaultValue="0"
               />
-              <label htmlFor="total">Total:</label>
+              <label htmlFor="subTotal">Total:</label>
               <input
                 type="number"
-                name="total"
-                onChange={handleChange}
+                ref={inputSubTotal}
                 value={
                   product.productQuantity *
                   product.value *
@@ -142,39 +168,51 @@ function TransactionProducts() {
           <div>
             <button onClick={addCartItem}>adicionar ao carrinho</button>
           </div>
+
+          <h2>Lista de Produtos:</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário:</th>
+                <th>Desconto</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {carrinho.map((item, index) => (
+                <>
+                  {index !== 0 ? (
+                    <tr>
+                      <td> {index}</td> <td>{item.productname}</td>
+                      <td>{item.productQuantity}</td>
+                      <td>{item.value}</td>
+                      <td>{item.discount}</td>
+                      <td>{item.subTotal}</td>
+                    </tr>
+                  ) : (
+                    ""
+                  )}
+                </>
+              ))}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>TOTAL</td>
+                <td>{total}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div>
+            <button type="submit">Enviar</button>
+          </div>
         </form>
-
-        <h2>Lista de Produtos:</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Número</th>
-              <th>Nome</th>
-              <th>Quantidade</th>
-              <th>Preço Unitário:</th>
-              <th>Desconto</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {carrinho.map((item, index) => (
-              
-              <>
-               
-                <tr>
-                  <td>{index + 1}</td> <td>{item.productId}</td>
-                  {/* <td>{returnName(item.productId)}</td> */}
-                  <td>{item.productQuantity}</td> <td>{item.discount}</td>
-                  <td>{item.value}</td>
-                </tr>
-              </>
-            ))}
-          </tbody>
-        </table>
-
-        <div>
-          <button>Enviar</button>
-        </div>
       </main>
     </div>
   );

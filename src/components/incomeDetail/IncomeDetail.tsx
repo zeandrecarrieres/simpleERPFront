@@ -45,7 +45,6 @@ function IncomeDetail() {
       <main>
         <h2>Detalhe da Entrada</h2>
         <p>Nome:</p>
-        
 
         <h2>ENDEREÇOS</h2>
 

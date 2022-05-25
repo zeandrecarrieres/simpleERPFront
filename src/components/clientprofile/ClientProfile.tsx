@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
 import api from "../../api/api";
-import style from "./styles.module.css"
+import style from "./styles.module.css";
 
 function ClientProfile() {
   let client = {
@@ -63,14 +63,37 @@ function ClientProfile() {
         {addresses.map((item) => (
           <>
             <div className={style["container"]}>
-              <li><label>Rua: </label> {item.street}</li>
-              <li><label>Número: </label>{item.number}</li>
-              <li><label>Complemento: </label>{item.complement}</li>
-              <li><label>Bairro: </label>{item.district}</li>
-              <li><label>CEP: </label>{item.zipCode}</li>
-              <li><label>Cidade: </label>{item.city}</li>
-              <li><label>Estado: </label>{item.state}</li>
-              <li><label>País: </label>{item.country}</li>
+              <li>
+                <label>Rua: </label> {item.street}
+              </li>
+              <li>
+                <label>Número: </label>
+                {item.number}
+              </li>
+              <li>
+                <label>Complemento: </label>
+                {item.complement}
+              </li>
+              <li>
+                <label>Bairro: </label>
+                {item.district}
+              </li>
+              <li>
+                <label>CEP: </label>
+                {item.zipCode}
+              </li>
+              <li>
+                <label>Cidade: </label>
+                {item.city}
+              </li>
+              <li>
+                <label>Estado: </label>
+                {item.state}
+              </li>
+              <li>
+                <label>País: </label>
+                {item.country}
+              </li>
             </div>
 
             {/* <AddressList item={{ item } } /> */}

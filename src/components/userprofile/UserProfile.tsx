@@ -4,39 +4,39 @@ import SideBar from "../sidebar/SideBar";
 import api from "../../api/api";
 import style from "./styles.module.css";
 
-function ProductProfile() {
-  let product = {
-    clientSupplier: "",
-    type: "",
-    name: "",
-    fantasyName: "",
-    CpfCnpj: "",
-    inscription: "",
+function UserProfile() {
+  let user = {
+  "name":"",
+	"email":"",
+	"password":"",
+	"access":""
   };
 
-  const [profile, setProfile] = useState(product);
+  const [profile, setProfile] = useState(user);
+
 
   const { _id } = useParams();
 
   useEffect(() => {
     api
-      .get(`/client/profile/${_id}`)
+      .get(`/admin/user/profile/${_id}`)
       .then((response) => response.data)
       .then((item) => setProfile(item))
       .catch((err) => console.error(err));
-  }, []);
+  }, [_id]);
 
-  return (
+   return (
     <div className="container">
       <SideBar />
       <main>
-        <h2>
-          <p>Nome:</p>
-          <p>{profile.name}</p>
-        </h2>
-      </main>
+        <h2>PERFIL DO Usuário</h2>
+        <p>Nome:</p>
+        <p>{profile.name}</p>
+
+       
+       </main>
     </div>
   );
 }
 
-export default ProductProfile;
+export default UserProfile;

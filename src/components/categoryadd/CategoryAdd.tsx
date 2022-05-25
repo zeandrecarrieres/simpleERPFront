@@ -5,7 +5,7 @@ import SideBar from "../sidebar/SideBar";
 import api from "../../api/api";
 
 function CategoryAdd() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   let baseCategory = { category: "" };
 
@@ -17,20 +17,20 @@ function CategoryAdd() {
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    
+
     if (!category.category) {
-      alert("preencha a categoria!")
+      alert("preencha a categoria!");
     }
 
     const response = await api.post("/category", category);
     alert("Categoria Adicionada com sucesso!");
     console.info(response);
-    clearForm()
+    clearForm();
 
-    navigate("/category")
+    navigate("/category");
   }
 
- function clearForm() {
+  function clearForm() {
     setCategory(baseCategory);
   }
 
@@ -41,7 +41,12 @@ function CategoryAdd() {
         <h2>CADASTRO DE CATEGORIA</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="category">Categoria</label>
-          <input type="category" name="category" onChange={handleChange} value={category.category}/>
+          <input
+            type="category"
+            name="category"
+            onChange={handleChange}
+            value={category.category}
+          />
           <button>Incluir</button>
         </form>
       </main>

@@ -12,24 +12,22 @@ function ListOfSuppliers() {
     name: "",
     fantasyName: "",
     CpfCnpj: "",
-    inscription: ""
-   }
+    inscription: "",
+  };
 
   const [suppliers, setSuppliers] = useState([data]);
 
-
-
- 
   useEffect(() => {
-    api.get("/supplier")
+    api
+      .get("/supplier")
       .then((response) => response.data)
-    .then((item) => setSuppliers(item))
-    .catch((err) => console.error(err));
+      .then((item) => setSuppliers(item))
+      .catch((err) => console.error(err));
   }, []);
 
-  const suspendSupplier = async (id:any) => {
+  const suspendSupplier = async (id: any) => {
     alert("Fornecedor suspenso com sucesso!");
-  }
+  };
 
   return (
     <div className="container">
@@ -37,21 +35,43 @@ function ListOfSuppliers() {
       <main>
         <h1>Lista de Fornecedores</h1>
         <div>
-          <Link className="add-button" to={"/supplieradd" }>Novo Fornecedor</Link>
+          <Link className="add-button" to={"/supplieradd"}>
+            Novo Fornecedor
+          </Link>
         </div>
-        <ul >
+        <ul>
           {suppliers.map((item, index) => (
             <>
               <li key={index} className="list">
-                <Link className="menu-link" to={`/supplier/profile/${item._id}`}> {item.name} </Link>
-               
+                <Link
+                  className="menu-link"
+                  to={`/supplier/profile/${item._id}`}
+                >
+                  {" "}
+                  {item.name}{" "}
+                </Link>
+
                 <div>
-                <Link className="add-button" to={`/addressadd/${item._id}/SUPPLIER`}>incluir endereço</Link>
-                <Link className="edit-button " to={`/addressadd/${item._id}/SUPPLIER`}>editar</Link>
-                  <button className="remove-button" onClick={(e)=>suspendSupplier(item._id)}>suspender</button>
-                  </div> 
-          </li>
-              
+                  <Link
+                    className="add-button"
+                    to={`/addressadd/${item._id}/SUPPLIER`}
+                  >
+                    incluir endereço
+                  </Link>
+                  <Link
+                    className="edit-button "
+                    to={`/addressadd/${item._id}/SUPPLIER`}
+                  >
+                    editar
+                  </Link>
+                  <button
+                    className="remove-button"
+                    onClick={(e) => suspendSupplier(item._id)}
+                  >
+                    suspender
+                  </button>
+                </div>
+              </li>
             </>
           ))}
         </ul>
