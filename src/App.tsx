@@ -1,115 +1,59 @@
 import React, { useState, useEffect, useContext } from "react";
-import { MeuContexto } from "./components/Context/MeuContexto"
-
-import api from "./api/api"
+import { MeuContexto } from "./components/Context/MeuContexto";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { MeusDados } from "./components/Context/MeuContexto";
+import NossasRotas from "../src/routes/Routers";
+import Login from "./components/login/Login";
+import api from "./api/api";
+import "./app.css";
 
 import Header from "./components/header/Header";
-import Home from "./components/home/Home";
 // import Footer from "./components/footer/Footer";
-import Dashboard from "./components/dashBoard/dashboard";
-import UserAdd from "./components/userAdd/UserAdd";
-import ListOfUsers from "./components/listofusers/ListOfUsers";
-import UserProfile from "./components/userprofile/UserProfile";
-import SupplierAdd from "./components/supplieradd/SupplierAdd";
-import ListOfSuppliers from "./components/listofsuppliers/ListOfSuppliers";
-import SupplierProfile from "./components/supplierprofile/SupplierProfile";
-import ClientAdd from "./components/clientadd/ClientAdd";
-import ListOfClients from "./components/listofclients/ListOfClients";
-import ClientProfile from "./components/clientprofile/ClientProfile";
-import AddressAdd from "./components/addressadd/AddressAdd";
-import ProductAdd from "./components/productadd/ProductAdd";
-import ListOfProducts from "./components/listofproducts/ListOfProducts";
-import ProductProfile from "./components/productprofile/ProductProfile";
-import CategoryAdd from "./components/categoryadd/CategoryAdd";
-import ListOfCategories from "./components/listofcategories/ListOfCategories";
-import IncomeAdd from "./components/incomeadd/IncomeAdd";
-import ListOfIncomes from "./components/listofincomes/ListOfIncomes";
-import IncomeDetail from "./components/incomeDetail/IncomeDetail";
-import SaleAdd from "./components/saleadd/SaleAdd";
-import ListOfSales from "./components/listofsales/ListOfSales";
-import TransactionProducts from "./components/transactionproducts/TransactionProducts";
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./app.css";
-import { MeusDados } from "./components/Context/MeuContexto";
 
 function App() {
-  const { logado, setLogado  } = useContext(MeuContexto)
+  const { logado, setLogado } = useContext(MeuContexto);
   const [loading, setLoading] = useState<boolean>(true);
-  
+  const [teste, setTeste] = useState("")
+
+  console.log(logado)
+
+  let token:string | null = ""
   useEffect(() => {
-    (async () => {
-      const token = await localStorage.getItem("token")
-      setLoading(false)
-      console.log(token)
-      
-      if (!token) {
-        setLogado(false)
-        }
 
-      api.defaults.headers.common['Authorization'] = `Bearer ${token} `
-       
-      setLogado(true)
-      
-    })()
-  }, [])
+    setLogado(true);
 
+    // (async () => {
+    //   token = await localStorage.getItem("token");
+    //   setLoading(false);
+    //   if (token) {
+    //   //   api.defaults.headers.common["Authorization"] = `Bearer ${token} `;
+    //   //   console.log(token);
+        
+    //   //   return
+    //   }
+    // })()
+    
+    
+    console.log(logado)
+    setLoading(false)
+  }, [logado]);
+  
   if (loading) {
-    return (
-      <h1>Carregando !!!</h1>
-    )
+    return <h1>Carregando !!!</h1>;
   }
+
 
   return (
     <div className="app">
       <MeusDados>
         <Router>
           <Header />
+            {String(logado)}
+            {/* {!logado && <Navigate to="/login" />} */}
           <Routes>
-            {/* Home Routes */}
-            <Route path="/" element={<Home />} />
-            {/* User Routes */}
-            <Route path="/useradd" element={<UserAdd />} />
-            <Route path="/user" element={<ListOfUsers />} />
-            <Route path="/user/profile/:_id" element={<UserProfile />} />
-            {/* Dashboard Routes */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            {/* Supplier Routes */}
-            <Route path="/supplieradd" element={<SupplierAdd />} />
-            <Route path="/supplier" element={<ListOfSuppliers />} />
-            <Route
-              path="/supplier/profile/:_id"
-              element={<SupplierProfile />}
-            />
-            {/* Client Routes */}
-            <Route path="/client" element={<ListOfClients />} />
-            <Route path="/clientadd" element={<ClientAdd />} />
-            <Route path="/client/profile/:_id" element={<ClientProfile />} />
-            <Route path="/addressadd/:_id/:type" element={<AddressAdd />} />
-            {/* Product Routes */}
-            <Route path="/product" element={<ListOfProducts />} />
-            <Route path="/productadd" element={<ProductAdd />} />
-            <Route path="/product/profile/:_id" element={<ProductProfile />} />
-            {/* Category Routes */}
-            <Route path="/category" element={<ListOfCategories />} />
-            <Route path="/categoryadd" element={<CategoryAdd />} />
-            {/* Income Routes */}
-            <Route path="/incomeadd" element={<IncomeAdd />} />
-            <Route path="/income" element={<ListOfIncomes />} />
-            <Route path="/income/detail/:_id" element={<IncomeDetail />} />
-            {/* Sales Routes */}
-            <Route path="/saleadd" element={<SaleAdd />} />
-            <Route path="/sale" element={<ListOfSales />} />
-            {/* Transactions Products Routes */}
-            <Route
-              path="/transactionproducts"
-              element={<TransactionProducts />}
-            />
-            <Route
-              path="/transactionproducts/:id"
-              element={<TransactionProducts />}
-            />
+            <Route path="/login" element={<Login />} />
           </Routes>
+          <NossasRotas />
           {/* <Footer /> */}
         </Router>
       </MeusDados>
