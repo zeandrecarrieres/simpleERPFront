@@ -1,0 +1,14 @@
+.filter-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.filter-container div {
+    margin-right: 2rem;
+}
+
+.filter-container div button {
+    margin-left: -2rem;
+    margin-bottom: 0.7rem;
+}

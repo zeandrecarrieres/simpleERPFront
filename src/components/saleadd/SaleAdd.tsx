@@ -11,24 +11,16 @@ function IncomeAdd() {
     type: "",
     NfNumber: "",
     IssueDate: "",
+    clientId: "",
     salesmanId: "",
     comission: "",
-    clientId: "",
     freight: "",
     depenses: "",
     paymentConditions: "",
     dueDate: "",
     paymentMethod: "",
   };
-  // let baseProduct = {
-  //   code: "",
-  //   categoryId: "",
-  //   name: "",
-  //   description: "",
-  //   unit: "",
-  //   price: 0,
-  //   cost: 0,
-  // };
+
 
   const [sale, setSale] = useState(baseSale);
   const [client, setClient] = useState([]);
@@ -50,17 +42,7 @@ function IncomeAdd() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    // if (
-    //   !product.code ||
-    //   !product.categoryId ||
-    //   !product.name ||
-    //   !product.description ||
-    //   !product.unit ||
-    //   !product.price ||
-    //   !product.cost
-    // ) {
-    //   alert("Preencha todos os campos!");
-    // }
+  
 
     console.log(sale);
     api.post("/sale", sale);
@@ -95,14 +77,14 @@ function IncomeAdd() {
               type="text"
               name="NfNumber"
               onChange={handleChange}
-              // value={product.code}
+            
             />
-            <label htmlFor="IssueDate">Data de Emissão:</label>
+            <label htmlFor="issueDate">Data de Emissão:</label>
             <input
               type="text"
-              name="IssueDate"
+              name="issueDate"
               onChange={handleChange}
-              // value={product.name}
+           
             />
             <label htmlFor="salesmanId">Vendedor:</label>
             <input type="text" name="salesmanId" onChange={handleChange} />

@@ -28,11 +28,26 @@ function SideBar() {
           <li className="menu-title">
             TRANSAÇÕES
           </li>
-          <Link className="menu-link" to="/incomeadd">
+          <Link className="menu-link" to="/income">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Entradas
           </Link>
-          <Link className="menu-link" to="/saleadd">
+          <Link className="menu-link" to="/sale">
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Saídas
+          </Link>
+           <Link className="menu-link" to="/stock">
+            <img src={ClientIcon} className="bar-icon" alt="icon" /> Estoque
+          </Link>
+            <li className="menu-title">
+            FINANCEIRO
+          </li>
+             <Link className="menu-link" to="/cashflow">
+            <img src={ClientIcon} className="bar-icon" alt="icon" /> Fluxo de Caixa
+          </Link>
+              <Link className="menu-link" to="/inflow">
+            <img src={ClientIcon} className="bar-icon" alt="icon" /> Contas a Receber
+          </Link>
+              <Link className="menu-link" to="/outflow">
+            <img src={ClientIcon} className="bar-icon" alt="icon" /> Contas a pagar
           </Link>
         </ul>
       </nav>

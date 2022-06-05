@@ -1,12 +1,20 @@
+import { useContext } from "react"
+import { MeuContexto } from "../Context/MeuContexto"
 import style from "./loginform.module.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import tools from "../../helpers/tools";
 import api from "../../api/api";
 
 function LoginForm() {
   let userLogin = { email: "", password: "" };
 
+  const navigate = useNavigate()
+
+  const { logado, setLogado } = useContext(MeuContexto)
+
   function handleChange(e: any) {
+
+
     const inputName = e.target.name;
     const inputValue = e.target.value;
     userLogin = { ...userLogin, [inputName]: inputValue };
@@ -35,7 +43,12 @@ function LoginForm() {
       localStorage.setItem("token", token);
       let userId = response.data.user._id;
       localStorage.setItem("userId", userId);
-      console.debug( api.defaults.headers.common['Authorization'])
+      console.debug(api.defaults.headers.common['Authorization'])
+      setLogado(true)
+      navigate("/income")
+      // return <Navigate to="/income" replace />
+      
+      
     } catch (error) {
       console.info(error);
     }
@@ -45,6 +58,7 @@ function LoginForm() {
 
   return (
     <div className="login">
+      <h1>Logado {String(logado)}</h1>
       <form onSubmit={handleSubmit}>
         <div className={style["form-container"]}>
           <label htmlFor="email">Email</label>
