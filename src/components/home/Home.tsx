@@ -1,12 +1,13 @@
-import "./home.css";
-import LoginForm from "../LoginForm/LoginForm";
+import React, { useContext } from 'react';
+import { IncomeContext } from "../Context/IncomeContext";
 
 function Home() {
+  const { incomes, setIncomes } = useContext(IncomeContext);
+
+  console.log(incomes);
+
   return (
-    <main>
-      <h1>Home</h1>
-      
-    </main>
+    <div>Home</div>
   );
 }
 

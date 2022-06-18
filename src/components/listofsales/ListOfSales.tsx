@@ -8,9 +8,17 @@ function ListOfSales() {
   const data = {
     _id: "",
     type: "",
-    NfNumber: "",
-    IssueDate: "",
-    clientId: "",
+    nfNumber: "",
+    issueDate: "",
+    clientId: {
+			_id: "",
+			clientSupplier: "",
+			type: "",
+			name: "",
+			fantasyName: "",
+			CpfCnpj: "",
+			inscription: ""
+		},
     salesmanId: "",
     comission: "",
     freight: "",
@@ -21,6 +29,8 @@ function ListOfSales() {
   };
 
   const [sales, setSales] = useState([data]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   useEffect(() => {
     api
@@ -34,6 +44,10 @@ function ListOfSales() {
     alert("Saída suspensa com sucesso!");
   };
 
+   function filterList() {
+    console.log(startDate, endDate);
+  }
+
   return (
     <div className="container">
       <SideBar />
@@ -44,12 +58,39 @@ function ListOfSales() {
             Nova Saída
           </Link>
         </div>
-        <ul>
+
+          <div className="filter-container">
+          <div>
+            <label htmlFor="startDate">Data Inicial:</label>
+            <input
+              type="date"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setStartDate(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="endDate">Data Final:</label>
+            <input
+              type="date"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setEndDate(e.target.value);
+              }}
+            />
+          </div>
+          
+          <div>
+            <button onClick={filterList}>Filtrar</button>
+          </div>
+        </div>
+
+        <ul className="list-container">
+           <li className="list-title">DATA - NÚMERO - TIPO - CLIENTE</li>
           {sales.map((item, index) => (
             <>
-              <li key={index} className="list">
+              <li key={index} className="list-sales">
                 <Link className="menu-link" to={`/sale/detail/${item._id}`}>
-                  {item.type} - {item.NfNumber}
+                 {item.issueDate} - {item.nfNumber} - {item.type} - {item.clientId.name}
                 </Link>
 
                 <div>

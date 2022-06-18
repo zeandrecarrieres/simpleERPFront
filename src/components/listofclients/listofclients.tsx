@@ -38,10 +38,10 @@ function ListOfClients() {
             Novo Cliente
           </Link>
         </div>
-        <ul>
+        <ul className="list-container">
           {clients.map((item, index) => (
             <>
-              <li key={index} className="list">
+              <li key={index} className="list-clients">
                 <Link className="menu-link" to={`/client/profile/${item._id}`}>
                   {" "}
                   {item.name}{" "}

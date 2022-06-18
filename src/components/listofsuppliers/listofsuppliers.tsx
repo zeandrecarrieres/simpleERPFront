@@ -39,10 +39,10 @@ function ListOfSuppliers() {
             Novo Fornecedor
           </Link>
         </div>
-        <ul>
+        <ul className="list-container">
           {suppliers.map((item, index) => (
             <>
-              <li key={index} className="list">
+              <li key={index} className="list-suppliers">
                 <Link
                   className="menu-link"
                   to={`/supplier/profile/${item._id}`}

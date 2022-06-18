@@ -58,7 +58,7 @@ function SaleAdd() {
         <h2>ENTRADA</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-container">
-            <label htmlFor="type">Type</label>
+            <label htmlFor="type">Tipo</label>
             <select name="type" id="type" onChange={handleChange} required>
               <option selected disabled>
                 Selecione...
@@ -114,7 +114,7 @@ function SaleAdd() {
             <label htmlFor="dueDate">Data de Vencimento:</label>
             <input type="text" name="dueDate" onChange={handleChange} />
 
-            <label htmlFor="paymentMethod">Type</label>
+            <label htmlFor="paymentMethod">Tipo</label>
             <select
               name="paymentMethod"
               id="paymentMethod"

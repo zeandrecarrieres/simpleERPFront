@@ -1,24 +1,28 @@
-import "./dashboard.css";
+import React, { useState, useEffect, useContext } from "react";
+// import IncomeContext from "../Context/IncomeContext";
+import { Link } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
-import { useContext, useState } from "react";
-import { MeuContexto } from "../Context/MeuContexto";
+import "./dashboard.css";
+import api from "../../api/api";
 
-const Dashboard: React.FC = () => {
- 
- const { logado, setLogado } = useContext(MeuContexto)
+function Dashboard() {
+  // const incomes = useContext(IncomeContext);
 
-  console.info(logado)
-
-  function click() {
-    setLogado(true)
-  }
 
   return (
     <div className="container">
-      {logado && <p>Teste</p>}
-    <button onClick={click}>Logar</button>
-    </div>
+      <SideBar />
+      <main>
+        <h1>Dashboard</h1>
+        <div>
+
+        </div>
+
+
+      </main>
+    </div >
   );
-};
+}
 
 export default Dashboard;
+

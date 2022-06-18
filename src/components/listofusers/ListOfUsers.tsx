@@ -37,13 +37,13 @@ function ListOfUsers() {
             Novo Usuário
           </Link>
         </div>
-        <ul>
+        <ul className="list-container">
           {users.map((item, index) => (
             <>
               <li key={index} className="list">
                 <Link className="menu-link" to={`/user/profile/${item._id}`}>
-                  {" "}
-                  {item.name}{" "}
+                  
+                  {item.name}
                 </Link>
 
                 <div>

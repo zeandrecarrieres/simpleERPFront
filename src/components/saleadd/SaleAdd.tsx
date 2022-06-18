@@ -72,10 +72,10 @@ function IncomeAdd() {
               <option value="outgoing">Saída</option>
               <option value="consignate">Consignado</option>
             </select>
-            <label htmlFor="NfNumber">Número NF</label>
+            <label htmlFor="nfNumber">Número NF</label>
             <input
               type="text"
-              name="NfNumber"
+              name="nfNumber"
               onChange={handleChange}
             
             />
@@ -129,7 +129,7 @@ function IncomeAdd() {
             <label htmlFor="dueDate">Data de Vencimento:</label>
             <input type="text" name="dueDate" onChange={handleChange} />
 
-            <label htmlFor="paymentMethod">Type</label>
+            <label htmlFor="paymentMethod">Tipo</label>
             <select
               name="paymentMethod"
               id="paymentMethod"

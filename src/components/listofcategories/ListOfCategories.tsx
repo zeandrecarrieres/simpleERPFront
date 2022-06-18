@@ -34,10 +34,10 @@ function ListOfCategories() {
             Nova Categoria
           </Link>
         </div>
-        <ul>
+        <ul className="list-container">
           {categories.map((item, index) => (
             <>
-              <li key={index} className="list">
+              <li key={index} className="list-categories">
                 <span className="menu-link">{item.category} </span>
                 <div>
                   <Link

@@ -58,16 +58,15 @@ function LoginForm() {
 
   return (
     <div className="login">
-      <h1>Logado {String(logado)}</h1>
-      <form onSubmit={handleSubmit}>
+         <form onSubmit={handleSubmit}>
         <div className={style["form-container"]}>
           <label htmlFor="email">Email</label>
           <input type="email" name="email" onChange={handleChange} />
           <label htmlFor="password">Password</label>
           <input type="password" name="password" onChange={handleChange} />
           <Link to="/">Esqueceu sua senha?</Link>
-        </div>
         <button>Entrar</button>
+        </div>
       </form>
     </div>
   );

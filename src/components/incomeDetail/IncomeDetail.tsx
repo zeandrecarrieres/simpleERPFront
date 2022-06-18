@@ -48,7 +48,7 @@ function IncomeDetail() {
 
         <h2>ENDEREÇOS</h2>
 
-        <li>{income.dueDate}</li>
+        <li>{income.NfNumber}</li>
       </main>
     </div>
   );

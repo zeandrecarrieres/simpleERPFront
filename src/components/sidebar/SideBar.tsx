@@ -1,8 +1,19 @@
 import "./sidebar.css";
 import { Link } from "react-router-dom";
 import ClientIcon from "../../assets/client_icon.png";
+import { useContext } from "react"
+import { MeuContexto } from "../Context/MeuContexto"
 
 function SideBar() {
+
+  const { logado, setLogado } = useContext(MeuContexto)
+
+  function logout() {
+    localStorage.removeItem('userId')
+    localStorage.removeItem('token')
+    setLogado(false)
+  }
+
   return (
     <div className="menu-container">
       <nav>
@@ -50,6 +61,7 @@ function SideBar() {
             <img src={ClientIcon} className="bar-icon" alt="icon" /> Contas a pagar
           </Link>
         </ul>
+        <button onClick={logout}>Sair</button>
       </nav>
     </div>
   );

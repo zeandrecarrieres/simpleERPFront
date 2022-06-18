@@ -40,13 +40,13 @@ function ListOfProducts() {
             Novo Produto
           </Link>
         </div>
-        <ul>
+        <ul className="list-container">
           {products.map((item, index) => (
             <>
-              <li key={index} className="list">
+              <li key={index} className="list-products">
                 <Link className="menu-link" to={`/product/profile/${item._id}`}>
-                  {" "}
-                  {item.name}{" "}
+                
+                  {item.name} - {item.description}
                 </Link>
 
                 <div>

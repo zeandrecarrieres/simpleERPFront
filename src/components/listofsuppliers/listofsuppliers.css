@@ -34,8 +34,8 @@ main {
     justify-content: space-between;
 }
 
-.list {
-    width: 30rem;
+.list-suppliers {
+    width: 95%;
     display: flex;
     /* flex-direction: column; */
     justify-content: space-between;

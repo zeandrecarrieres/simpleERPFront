@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import SideBar from "../sidebar/SideBar";
 import api from "../../api/api";
-import "./outflow.css"
+import "./outflow.css";
 
-function InFlow() {
+function OutFlow() {
   const data = {
     _id: "",
     type: "",
     NfNumber: "",
     IssueDate: "",
-    supplierId: "",
+    supplierId: {
+      clientSupplier: "",
+      type: "",
+      name: "",
+      fantasyName: "",
+      inscription: "",
+    },
     freight: "",
     depenses: "",
     paymentConditions: "",
@@ -17,42 +23,48 @@ function InFlow() {
     paymentMethod: "",
   };
 
-  const [incomes, setIncomes] = useState([data]);
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
+  const [sales, setSales] = useState([data]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [type, setType] = useState("");
 
   useEffect(() => {
     api
       .get("/income")
       .then((response) => response.data)
-      .then((item) => setIncomes(item))
+      .then((item) => setSales(item))
       .catch((err) => console.error(err));
   }, []);
 
   function filterList() {
-       console.log(startDate, endDate, type)
+    console.log(startDate, endDate, type);
   }
 
   return (
     <div className="container">
       <SideBar />
       <main>
-        <h2>Contas a Receber</h2>
+        <h2>Contas a Pagar</h2>
         <div className="filter-container">
-   <div>
-          <label htmlFor="startDate">Data Inicial:</label>
-            <input type="date" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setStartDate(e.target.value)
-            }}/>
-        </div>
-        <div>
-          <label htmlFor="endDate">Data Final:</label>
-              <input type="date" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setEndDate(e.target.value)
-            }}/>
+          <div>
+            <label htmlFor="startDate">Data Inicial:</label>
+            <input
+              type="date"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setStartDate(e.target.value);
+              }}
+            />
           </div>
-           <div>
+          <div>
+            <label htmlFor="endDate">Data Final:</label>
+            <input
+              type="date"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setEndDate(e.target.value);
+              }}
+            />
+          </div>
+          <div>
             <label htmlFor="type">Tipo:</label>
             <select
               name="paymentConditions"
@@ -77,14 +89,16 @@ function InFlow() {
             <button onClick={filterList}>Filtrar</button>
           </div>
         </div>
-     
 
-        <ul>
-          {incomes.map((item, index) => (
+        <ul className="list-container">
+          <li className="list-title">DATA DA EMISSÃO - NÚMERO - FORNECEDOR - VENCIMENTO - TIPO</li>
+          
+          {sales.map((item, index) => (
             <>
+              {/* {if(item.paymentMethod != "money") &&} */}
               <li key={index} className="list">
-                {item.dueDate} - {item.NfNumber} - {item.supplierId} -{" "}
-                {item.paymentMethod}
+                {item.IssueDate} - {item.NfNumber} - {item.supplierId.name}
+                - {item.dueDate} - {item.paymentMethod}
                 <div></div>
               </li>
             </>
@@ -95,4 +109,4 @@ function InFlow() {
   );
 }
 
-export default InFlow;
+export default OutFlow;

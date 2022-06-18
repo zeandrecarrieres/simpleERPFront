@@ -95,14 +95,14 @@ function TransactionProducts() {
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    delete carrinho[0]
+    delete carrinho[0];
     console.log(carrinho);
-    await addCarrinhoBd(carrinho)
+    await addCarrinhoBd(carrinho);
   }
 
-  async function addCarrinhoBd(dados:any) {
-    const response = await api.post("/incomeproducts", dados)
-    console.log(response)
+  async function addCarrinhoBd(dados: any) {
+    const response = await api.post("/incomeproducts", dados);
+    // console.log(response)
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
@@ -36,21 +36,28 @@ import { MeuContexto } from "../components/Context/MeuContexto";
 
 
 function Routers() {
-const { logado, setLogado } = useContext(MeuContexto)
+  const { logado, setLogado } = useContext(MeuContexto);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const loggedUser = localStorage.getItem('userId')
+    (async () => {
 
-    console.log(`usuario logado ${loggedUser} `)
-    if (loggedUser) {
-      setLogado(true)
-      console.log(logado)
-      
-    }
+      const loggedUser = await localStorage.getItem('userId');
 
-  })
-  
-    return (
+      console.log(`usuario logado ${loggedUser} `);
+      if (loggedUser) {
+        setLogado(true);
+        console.log(logado);
+        setLoading(false);
+      }
+    })();
+
+  }, []);
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
+  return (
     <Routes>
       {/* Home Routes */}
 
@@ -83,7 +90,7 @@ const { logado, setLogado } = useContext(MeuContexto)
       <Route path="/income/detail/:_id" element={<Private><IncomeDetail /></Private>} />
       {/* Sales Routes */}
       <Route path="/saleadd" element={<Private><SaleAdd /></Private>} />
-      <Route path="/sale" element={ <Private><ListOfSales /></Private>} />
+      <Route path="/sale" element={<Private><ListOfSales /></Private>} />
       <Route path="/stock" element={<Private><Stock /></Private>} />
 
       {/* Transactions Products Routes */}
@@ -95,7 +102,7 @@ const { logado, setLogado } = useContext(MeuContexto)
       <Route path="/cashflow" element={<Private><CashFlow /></Private>} />
       <Route path="/inflow" element={<Private><InFlow /></Private>} />
       <Route path="/outflow" element={<Private><OutFlow /></Private>} />
-  
+
     </Routes>
   );
 }

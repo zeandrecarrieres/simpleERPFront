@@ -8,8 +8,14 @@ function InFlow() {
     _id: "",
     type: "",
     NfNumber: "",
-    IssueDate: "",
-    clientId: "",
+    issueDate: "",
+    clientId: {
+      clientSupplier: "CLIENT",
+			type: "consumer",
+			name: "José André",
+			fantasyName: "Zé",
+			CpfCnpj: "123.456.789-50",
+			inscription: "0"},
     salesmanId: "",
     comission: "",
     freight: "",
@@ -86,12 +92,12 @@ function InFlow() {
           </div>
         </div>
 
-        <ul>
+        <ul className="list-container">
+           <li className="list-title">DATA DA EMISSÃO - NÚMERO - CLIENTE - VENCIMENTO - TIPO</li>
           {sales.map((item, index) => (
             <>
               <li key={index} className="list">
-                {item.dueDate} - {item.NfNumber} - {item.clientId} -{" "}
-                {item.paymentMethod}
+                {item.issueDate} - {item.clientId.name} - {item.paymentConditions} - {item.paymentMethod} - {item.dueDate}
                 <div></div>
               </li>
             </>
